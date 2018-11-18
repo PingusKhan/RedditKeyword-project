@@ -96,7 +96,7 @@ def returnTop10Keywords(dictWords):
     keywords = []
     counter = 0
     for key,value in sorted(dictWords.items(), key = lambda x: x[1], reverse = True):
-        if(counter <= 10):
+        if(counter < 10):
             if(len(key) > 4):
                 keywords.append(key)
                 counter += 1
@@ -105,7 +105,7 @@ def returnTop10Keywords(dictWords):
 if __name__ == '__main__':
     '''Experiment with your reddit function here. Examine the output on the console.'''
     #TODO: (10) Set the value of subreddit_name to your favorite subreddit.
-    subreddit_name = 'uci' 
+    subreddit_name = 'grandorder' 
     #TODO: (11) Create a new instance of the praw Reddit object.
     reddit_instance = create_reddit_instance(read_only=True) #so it will not print all the file calling which is good for debugging.
     #TODO: (12) Generate a list of top ten posts for your subreddit, using the praw Reddit object you created.
@@ -114,7 +114,7 @@ if __name__ == '__main__':
 
     dictionary = createDictionary(posts)
     top10 = returnTop10Keywords(dictionary)
-    print(top10)
+    counter = 1
     for key in top10:
-        print(dictionary[key])
-    
+        print("%d." % counter, key, dictionary[key])
+        counter += 1
