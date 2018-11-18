@@ -1,11 +1,18 @@
 body,
 html {
-    background: #e9ebee;
+    background: #ca567d;
     font-family: 'Montserrat';
+    size: "70%"
 }
 
 #top-posts-title {
     margin: 1em;
+    text-align: center;
+    color: white
+}
+
+#search-post {
+    color: white;
     text-align: center;
 }
 
