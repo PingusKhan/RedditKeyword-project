@@ -1,6 +1,7 @@
 import praw #This module is used to create Reddit instances
 import json
 from urllib import request
+from string import punctuation
 
 '''The reddit_instance object will contain the reddit instance we will create to handle all API calls. 
    Read the Python Reddit API Wrapper(PRAW) documentation for further details'''
@@ -9,8 +10,6 @@ from urllib import request
 #TODO: (2) Update your credentials in the credentials_template.json file
 #TODO: (3) Rename credentials_template.json to credentials.json
 #Tip: bash command for above step: cp credentials_template.json credentials.json
-
-dictionary = {'hello': 2, 'timing' : 7, 'weird': 5, 'the': 21, 'whatever': 15, 'yes': 8, 'a': 25}
 
 def create_reddit_instance(read_only = False):
     '''This function reads the crendentials from credentials.json and creates a Reddit instance.
@@ -57,21 +56,47 @@ def ten_top_posts(reddit_instance, subreddit_name):
     return subreddit.top(limit = 2)
 
 def returnTitle_Description_Comments(post):
+    '''returns a list that extracts all the information from the post: title, description, comments'''
     listComment = returnCommentArray(post)
     contentArray = [post.title, post.selftext, listComment]
     return contentArray
 
 def returnCommentArray(post):
+    '''returns a list of the posts' comments'''
     listComment = []
     for comment in post.comments:
         listComment.append(comment.body)
     return listComment
 
+def count_words_in_sentence(wordfreq, sentence):
+    '''
+        Takes a sentence and counts the individual words after removing punctuations.
+    '''
+    sentence_str = ''.join(c.lower() for c in sentence if c not in punctuation)
+    sentence_arr = sentence_str.split()
+    for word in sentence_arr:
+        if word not in wordfreq:
+            wordfreq[word] = 0
+        wordfreq[word] += 1
+    return wordfreq
+
+def createDictionary(posts):
+    wordfreq = {}
+    
+    for raw_post in posts:
+        post_information = returnTitle_Description_Comments(raw_post)
+        wordfreq.update(count_words_in_sentence(wordfreq, post_information[0]))
+        wordfreq.update(count_words_in_sentence(wordfreq, post_information[1]))
+        for comment in post_information[2]:
+            wordfreq.update(count_words_in_sentence(wordfreq, comment))
+    return wordfreq
+
 def returnTop10Keywords(dictWords):
+    ''' returns the top 10 keywords from a dictionary'''
     keywords = []
     counter = 0
     for key,value in sorted(dictWords.items(), key = lambda x: x[1], reverse = True):
-        if(counter <= 3):
+        if(counter <= 10):
             if(len(key) > 4):
                 keywords.append(key)
                 counter += 1
@@ -86,11 +111,10 @@ if __name__ == '__main__':
     #TODO: (12) Generate a list of top ten posts for your subreddit, using the praw Reddit object you created.
     posts = ten_top_posts(reddit_instance,subreddit_name)
     #TODO: (13) Iterate through the posts list returned by the function call above, and print its title attribute
-    #for post in posts:
-    #    contentArray = returnTitle_Description_Comments(post)
-    #    for content in contentArray:
-    #        print(content)
-    #        print('\n')
 
-    #print(returnTop10Keywords(dictionary))
+    dictionary = createDictionary(posts)
+    top10 = returnTop10Keywords(dictionary)
+    print(top10)
+    for key in top10:
+        print(dictionary[key])
     
