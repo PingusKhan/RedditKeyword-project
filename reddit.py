@@ -27,8 +27,15 @@ def create_reddit_instance(read_only = False):
 def ten_top_posts(reddit_instance, subreddit_name):
     '''This function takes a subreddit name as a string and prints out ten posts under the top category'''
     subreddit = reddit_instance.subreddit(subreddit_name)
+    l = []
+    for x in subreddit.top(limit = 10):
+        if len(x.title) > 150:
+            x.title = x.title[:150]+'...'
+            l.append(x)
 
-    return subreddit.top(limit = 10)
+        else:
+            l.append(x)
+    return l 
 
 def returnTitle_Description_Comments(post):
     '''returns a list that extracts all the information from the post: title, description, comments'''

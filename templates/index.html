@@ -1,7 +1,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Reddit Workshop</title>
+        <title>Reddit Post Finder</title>
         <!-- Link to fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <!-- Link to CSS-->
@@ -9,7 +9,7 @@
     </head>
 
     <body> 
-        <h1 id="top-posts-title">Top 10 posts for the {{name}} subreddit</h1>
+        <h1 id="top-posts-title">Top 10 posts for {{name}}</h1>
         <h2 id= "search-post">
             <label for="name"> Reddit Keyword Search: </label>
             <form action= "/handlesearch" method = "post">
@@ -43,10 +43,12 @@
         <aside>
             <h1>
                     {% if posts[2] %}
+                    Most Used Words:
                     {% for top in posts[2] %}
                         <div class ="top10">
-                            <h2 class ="top10-words">
+                            <h2 class ="top10-words" style = "font-size: 17px">
                                 {{top,posts[1][top]}}
+    
                             </h2>
                         </div>
                     {% endfor %}

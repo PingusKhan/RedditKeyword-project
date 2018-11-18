@@ -36,7 +36,7 @@ section {
 aside {
     /* float: left; */
     width: auto;
-    padding-right:3em;
+    padding-right:5em;
     color: white;
     font-size: "1.3em";
 }
@@ -66,6 +66,7 @@ aside {
 .post-title {
     height: 100%;
     margin-left: 1em;
+    font-size: 18px;
 }
 
 .post-img {
