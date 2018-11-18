@@ -28,7 +28,7 @@ def ten_top_posts(reddit_instance, subreddit_name):
     '''This function takes a subreddit name as a string and prints out ten posts under the top category'''
     subreddit = reddit_instance.subreddit(subreddit_name)
 
-    return subreddit.top(limit = 2)
+    return subreddit.top(limit = 10)
 
 def returnTitle_Description_Comments(post):
     '''returns a list that extracts all the information from the post: title, description, comments'''

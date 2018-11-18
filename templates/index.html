@@ -12,7 +12,7 @@
         <h1 id="top-posts-title">Top 10 posts for the {{name}} subreddit</h1>
         <h2 id= "search-post">
             <label for="name"> Reddit Keyword Search: </label>
-            <form action= "/handelsearch" method = "post">
+            <form action= "/handlesearch" method = "post">
             <input type="text" id="name" name="name" size="20">
             <input type="submit">
             </form>
@@ -24,7 +24,7 @@
                 {% for post in posts %}
 
                     <div class="post">
-                        <img class="post-img" src="https://upload.wikimedia.org/wikipedia/commons/c/cc/ESC_large_ISS022_ISS022-E-11387-edit_01.JPG" />
+                        <img class="post-img" src="https://media.glassdoor.com/sqll/796358/reddit-squarelogo-1490630845152.png" />
 
                         <h2 class="post-title"> {{post.title}} </h2>
                     </div>  
