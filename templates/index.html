@@ -18,12 +18,14 @@
             </form>
 
         </h2>
+        <div id= "content">
+
+   
         <section>
           <div id="top-posts">
-            {% if posts %} 
-
-                {% for post in posts %}
-
+             
+            {% if posts[0] %} 
+                {% for post in posts[0] %}
                     <div class="post">
                         <img class="post-img" src="https://media.glassdoor.com/sqll/796358/reddit-squarelogo-1490630845152.png" />
 
@@ -32,8 +34,26 @@
 
                 {% endfor %}
             {% endif %}
+
+ 
+
         </div>  
         </section>
+
+        <aside>
+            <h1>
+                    {% if posts[2] %}
+                    {% for top in posts[2] %}
+                        <div class ="top10">
+                            <h2 class ="top10-words">
+                                {{top,posts[1][top]}}
+                            </h2>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </h1>
+        </aside>
+    </div>
         
     </body>
 </html>

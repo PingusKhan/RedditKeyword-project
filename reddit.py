@@ -33,7 +33,7 @@ def ten_top_posts(reddit_instance, subreddit_name):
 def returnTitle_Description_Comments(post):
     '''returns a list that extracts all the information from the post: title, description, comments'''
     listComment = returnCommentArray(post)
-    contentArray = [post.title, post.selftext, listComment]
+    contentArray = [post.title[0:50] + "...", post.selftext, listComment]
     return contentArray
 
 def returnCommentArray(post):
@@ -75,14 +75,14 @@ def returnTop10Keywords(dictWords):
                 counter += 1
     return keywords
 
-if __name__ == '__main__':
-    subreddit_name = 'grandorder' 
-    reddit_instance = create_reddit_instance(read_only=True)
-    posts = ten_top_posts(reddit_instance,subreddit_name)
+# if __name__ == '__main__':
+    # subreddit_name = 'grandorder' 
+    # reddit_instance = create_reddit_instance(read_only=True)
+    # posts = ten_top_posts(reddit_instance,subreddit_name)
     
-    dictionary = createDictionary(posts)
-    top10 = returnTop10Keywords(dictionary)
-    counter = 1
-    for key in top10:
-        print("%d." % counter, key, dictionary[key])
-        counter += 1
+    # dictionary = createDictionary(posts)
+    # top10 = returnTop10Keywords(dictionary)
+    # counter = 1
+    # for key in top10:
+    #     print("%d." % counter, key, dictionary[key])
+    #     counter += 1

@@ -2,7 +2,7 @@ body,
 html {
     background: #ca567d;
     font-family: 'Montserrat';
-    size: "70%"
+    /* size: "70%" */
 }
 
 #top-posts-title {
@@ -22,10 +22,23 @@ html {
     align-items: center;
 }
 section {
-    float: left;
-    padding: 20px;
-    width: 80%;
+    float: left; 
+    width: auto;
     height: 10em;
+
+}
+
+#content {
+    display: flex;
+
+}
+
+aside {
+    /* float: left; */
+    width: auto;
+    padding-right:3em;
+    color: white;
+    font-size: "1.3em";
 }
 
 .post {

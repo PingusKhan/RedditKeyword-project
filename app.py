@@ -12,7 +12,8 @@ def index(keyword=None):
     else:
         subreddit_name=keyword
     reddit_instance = reddit.create_reddit_instance(read_only =True)
-    top_ten_posts = reddit.ten_top_posts(reddit_instance, subreddit_name)
+    top_ten_posts = [reddit.ten_top_posts(reddit_instance, subreddit_name), reddit.createDictionary(reddit.ten_top_posts(reddit_instance, subreddit_name)),reddit.returnTop10Keywords(reddit.createDictionary(reddit.ten_top_posts(reddit_instance, subreddit_name)))]
+
     return render_template('index.html',posts = top_ten_posts ,name = subreddit_name)
 
 @app.route('/handlesearch', methods=['POST'])
